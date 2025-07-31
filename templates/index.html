@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative Code Refactorer</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #444;
+            text-align: center;
+        }
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .diff-container {
+            margin-top: 2rem;
+        }
+        table.diff {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .diff th {
+            background-color: #f2f2f2;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        .diff td {
+            font-family: "Courier New", Courier, monospace;
+            padding: 0.2rem 0.5rem;
+            vertical-align: top;
+        }
+        .diff_header {
+            background-color: #e0e0e0;
+        }
+        .diff_next {
+            background-color: #f0f0f0;
+        }
+        .diff_add {
+            background-color: #ddffdd;
+        }
+        .diff_chg {
+            background-color: #ffffcc;
+        }
+        .diff_sub {
+            background-color: #ffdddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Generative Code Refactorer</h1>
+        <p>Masukkan kode Python Anda di bawah ini untuk dianalisis dan direfaktor oleh AI. Alat ini akan menyarankan versi yang lebih modern, cepat, dan mudah dibaca.</p>
+        <form method="post">
+            <textarea name="code" rows="15" placeholder="Contoh:&#10;for i in range(len(my_list)):&#10;    print(my_list[i])">{{ original_code }}</textarea>
+            <button type="submit">Refaktor Kode</button>
+        </form>
+
+        {% if diff %}
+        <div class="diff-container">
+            <h2>Perbandingan Kode</h2>
+            {{ diff|safe }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
